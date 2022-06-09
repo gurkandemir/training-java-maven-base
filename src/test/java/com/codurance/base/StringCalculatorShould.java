@@ -40,7 +40,9 @@ public class StringCalculatorShould {
             Arguments.of("//!\n2000!3000", 0),
             Arguments.of("//!\n300!3000", 300),
             Arguments.of("//***\n1***2***3", 6),
-            Arguments.of("//[***]\n1***2***3", 6)
+            Arguments.of("//[***]\n1***2***3", 6),
+            Arguments.of("//[!!!]\n1!!!2!!!3", 6),
+            Arguments.of("//[*][%]\n1*2%3", 6)
         );
     }
 

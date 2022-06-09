@@ -40,8 +40,15 @@ public class StringCalculator {
 
     String findDelimeter(String input){
         if(isDelimeterGiven(input)){
-            String[] delimeters = input.split("\n"); // "//,\n3,4,5"
+            String[] delimeters = input.split("\n"); // "//[***]\n3,4,5"
+
             String tempDelimeter = delimeters[0].substring(2);
+
+            if(tempDelimeter.contains("[") && tempDelimeter.contains("]")){
+                tempDelimeter = tempDelimeter.substring(tempDelimeter.indexOf("[") + 1);
+                tempDelimeter = tempDelimeter.substring(0, tempDelimeter.indexOf("]"));
+            }
+
             StringBuilder delimeter = new StringBuilder();
             for (int i = 0; i < tempDelimeter.length(); i++) {
                 if (tempDelimeter.charAt(i) == '*') {
