@@ -5,9 +5,10 @@ public class StringCalculator {
         if ("".equals(numbers))
             return 0;
 
-        String[] nums = numbers.split(",");
-
         int result = 0;
+
+
+        String[] nums = numbers.split(",|\n");
 
         for(String number: nums){
             result += Integer.parseInt(number);
