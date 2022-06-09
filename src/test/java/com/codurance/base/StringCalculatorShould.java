@@ -31,4 +31,10 @@ public class StringCalculatorShould {
         StringCalculator calculator = new StringCalculator();
         assertEquals(6, calculator.Add("1,2,3"));
     }
+
+    @Test
+    void return_12_when_the_string_is_3_comma_4_backslashN_5() {
+        StringCalculator calculator = new StringCalculator();
+        assertEquals(12, calculator.Add("3,4\n5"));
+    }
 }
