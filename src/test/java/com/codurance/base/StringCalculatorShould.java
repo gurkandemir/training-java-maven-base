@@ -23,6 +23,12 @@ public class StringCalculatorShould {
     @Test
     void return_3_when_the_input_string_is_1_comma_2() {
         StringCalculator calculator = new StringCalculator();
-        assertEquals(1, calculator.Add("1,2"));
+        assertEquals(3, calculator.Add("1,2"));
+    }
+
+    @Test
+    void return_3_when_the_input_string_is_1_comma_2_comma_3() {
+        StringCalculator calculator = new StringCalculator();
+        assertEquals(6, calculator.Add("1,2,3"));
     }
 }

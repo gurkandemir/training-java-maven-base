@@ -5,6 +5,14 @@ public class StringCalculator {
         if ("".equals(numbers))
             return 0;
 
-        return Integer.parseInt(numbers);
+        String[] nums = numbers.split(",");
+
+        int result = 0;
+
+        for(String number: nums){
+            result += Integer.parseInt(number);
+        }
+
+        return result;
     }
 }
