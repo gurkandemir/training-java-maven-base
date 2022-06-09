@@ -41,7 +41,17 @@ public class StringCalculator {
     String findDelimeter(String input){
         if(isDelimeterGiven(input)){
             String[] delimeters = input.split("\n"); // "//,\n3,4,5"
-            return delimeters[0].substring(2);
+            String tempDelimeter = delimeters[0].substring(2);
+            StringBuilder delimeter = new StringBuilder();
+            for (int i = 0; i < tempDelimeter.length(); i++) {
+                if (tempDelimeter.charAt(i) == '*') {
+                    delimeter.append("\\").append(tempDelimeter.charAt(i));
+                } else {
+                    delimeter.append(tempDelimeter.charAt(i));
+                }
+            }
+
+            return delimeter.toString();
         }
 
         return ",";
