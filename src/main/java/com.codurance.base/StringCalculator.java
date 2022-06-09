@@ -2,6 +2,9 @@ package com.codurance.base;
 
 public class StringCalculator {
     int Add(String numbers){
-        return 0;
+        if ("".equals(numbers))
+            return 0;
+
+        return Integer.parseInt(numbers);
     }
 }
