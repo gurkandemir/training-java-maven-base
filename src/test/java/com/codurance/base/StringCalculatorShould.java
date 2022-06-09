@@ -1,12 +1,13 @@
 package com.codurance.base;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StringCalculatorShould {
 
@@ -21,6 +22,22 @@ public class StringCalculatorShould {
 
         // then
         assertEquals(expected, result);
+    }
+
+    @Test
+    void throw_exception_when_input_is_negative() {
+        // given
+        StringCalculator calculator = new StringCalculator();
+        String input = "-1";
+
+        // when
+        NegativeInputException thrown = assertThrows(
+            NegativeInputException.class,
+            () -> calculator.Add(input)
+        );
+
+        // then
+        assertTrue(thrown.getMessage().contains("Negative values: -1"));
     }
 
     private static Stream<Arguments> inputsForCalculator() {
