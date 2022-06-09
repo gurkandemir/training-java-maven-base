@@ -1,10 +1,12 @@
 package com.codurance.base;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
 public class StringCalculator {
     int Add(String numbers) throws NegativeInputException {
-        if ("".equals(numbers))
+        if (StringUtils.isEmpty(numbers))
             return 0;
 
         int result = 0;
@@ -12,7 +14,7 @@ public class StringCalculator {
         String delimeter = findDelimeter(numbers);
         String[] nums = getNumbers(numbers).split(delimeter+"|\n");
 
-        List<Integer> negativeNumbers = new java.util.ArrayList<Integer>(List.of());
+        List<Integer> negativeNumbers = new java.util.ArrayList<>(List.of());
 
         for(String number: nums){
             int num = Integer.parseInt(number);
@@ -52,13 +54,6 @@ public class StringCalculator {
     }
 
     String prepareMessageForNegativeValues(List<Integer> negativeNumbers) {
-        StringBuilder message = new StringBuilder();
-
-        for (int number : negativeNumbers) {
-            message.append(number).append(",");
-        }
-
-        return message.substring(0, message.length() -1);
-
+        return StringUtils.join(negativeNumbers, ",");
     }
 }
