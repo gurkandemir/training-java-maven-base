@@ -1,6 +1,5 @@
 package com.codurance.base;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -24,38 +23,6 @@ public class StringCalculatorShould {
         assertEquals(expected, result);
     }
 
-    @Test
-    void throw_exception_when_input_is_negative() {
-        // given
-        StringCalculator calculator = new StringCalculator();
-        String input = "-1";
-
-        // when
-        NegativeInputException thrown = assertThrows(
-            NegativeInputException.class,
-            () -> calculator.Add(input)
-        );
-
-        // then
-        assertTrue(thrown.getMessage().contains("Negative values: -1"));
-    }
-
-    @Test
-    void throw_exception_when_input_has_multiple_negatives() {
-        // given
-        StringCalculator calculator = new StringCalculator();
-        String input = "-1,-2";
-
-        // when
-        NegativeInputException thrown = assertThrows(
-            NegativeInputException.class,
-            () -> calculator.Add(input)
-        );
-
-        // then
-        assertTrue(thrown.getMessage().contains("Negative values: -1,-2"));
-    }
-
     private static Stream<Arguments> inputsForCalculator() {
         return Stream.of(
             Arguments.of("", 0),
@@ -70,6 +37,29 @@ public class StringCalculatorShould {
             Arguments.of("//;\n3\n4\n5", 12),
             Arguments.of("//;\n3;4;5", 12),
             Arguments.of("//!\n3!4!5", 12)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource(value = "inputsForNegativeValues")
+    void throw_exception_when_input_is_negative(String input, String expectedMessage) {
+        // given
+        StringCalculator calculator = new StringCalculator();
+
+        // when
+        NegativeInputException thrown = assertThrows(
+            NegativeInputException.class,
+            () -> calculator.Add(input)
+        );
+
+        // then
+        assertEquals(thrown.getMessage(), expectedMessage);
+    }
+
+    private static Stream<Arguments> inputsForNegativeValues() {
+        return Stream.of(
+            Arguments.of("-1", "Negative values: -1"),
+            Arguments.of("-1,-2", "Negative values: -1,-2")
         );
     }
 }
