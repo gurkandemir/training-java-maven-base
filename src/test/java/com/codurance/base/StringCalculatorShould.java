@@ -37,7 +37,7 @@ public class StringCalculatorShould {
             Arguments.of("//;\n3\n4\n5", 12),
             Arguments.of("//;\n3;4;5", 12),
             Arguments.of("//!\n3!4!5", 12),
-            Arguments.of("//!\n2000!3000", 5000)
+            Arguments.of("//!\n2000!3000", 0)
         );
     }
 
