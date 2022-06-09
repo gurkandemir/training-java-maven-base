@@ -32,7 +32,9 @@ public class StringCalculatorShould {
             Arguments.of("1,2,3", 6),
             Arguments.of("3,4\n5", 12),
             Arguments.of("3\n4\n5", 12),
-            Arguments.of("3\n4,5", 12)
+            Arguments.of("3\n4,5", 12),
+            //Arguments.of("//;\n3\n4;5", 12),
+            Arguments.of("//;\n3;4;5", 12)
         );
     }
 }
