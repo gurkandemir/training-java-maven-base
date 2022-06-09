@@ -1,7 +1,7 @@
 package com.codurance.base;
 
 public class StringCalculator {
-    int Add(String numbers){
+    int Add(String numbers) throws NegativeInputException {
         if ("".equals(numbers))
             return 0;
 
@@ -11,6 +11,10 @@ public class StringCalculator {
         String[] nums = getNumbers(numbers).split(delimeter+"|\n");
 
         for(String number: nums){
+            int num = Integer.parseInt(number);
+            if(num<0){
+                throw new NegativeInputException("Negative values: " + num);
+            }
             result += Integer.parseInt(number);
         }
 

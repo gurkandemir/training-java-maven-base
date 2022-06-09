@@ -13,7 +13,7 @@ public class StringCalculatorShould {
 
     @ParameterizedTest
     @MethodSource(value = "inputsForCalculator")
-    void return_summation_according_to_input(String input, int expected) {
+    void return_summation_according_to_input(String input, int expected) throws NegativeInputException {
         // given
         StringCalculator calculator = new StringCalculator();
 
@@ -38,6 +38,22 @@ public class StringCalculatorShould {
 
         // then
         assertTrue(thrown.getMessage().contains("Negative values: -1"));
+    }
+
+    @Test
+    void throw_exception_when_input_has_multiple_negatives() {
+        // given
+        StringCalculator calculator = new StringCalculator();
+        String input = "-1,-2";
+
+        // when
+        NegativeInputException thrown = assertThrows(
+            NegativeInputException.class,
+            () -> calculator.Add(input)
+        );
+
+        // then
+        assertTrue(thrown.getMessage().contains("Negative values: -1,-2"));
     }
 
     private static Stream<Arguments> inputsForCalculator() {
